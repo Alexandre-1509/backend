@@ -11,7 +11,7 @@ const auth = (req, res, next) => {
 
     try{
         const decoded = jwt.verify(token.replace('Bearer ', ''), JWT_SECRET)
-        res.status(200).json(decoded)
+        req.user = decoded // Salva dados do usuário no request
     }catch(err){
         res.status(401).json('Token Invalido')
     }
